@@ -1,3 +1,3 @@
-# manager
+# Manager
 Manager is an Agile Project Management tool
-ANOTHER LINE
+https://travis-ci.org/marciomarinho/manager.svg?branch=master
