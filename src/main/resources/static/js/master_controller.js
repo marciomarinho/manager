@@ -5,14 +5,10 @@ manager.controller('MasterController', ['$scope', function($scope) {
     $scope.validationFeedback = function(element) {
         var result;
         if ($scope.form.$submitted || element.$touched) {
-            //result = 'has-feedback';
             if (element.$invalid && ($scope.form.$submitted || element.$touched)) {
                 result = 'has-feedback';
                 result = result + ' has-error'
             }
-            //if (element.$valid){
-            //    result = result + ' has-success'
-            //}
         }
         return result;
     };
@@ -22,7 +18,6 @@ manager.controller('MasterController', ['$scope', function($scope) {
         if ((element.$invalid) && ($scope.form.$submitted || element.$touched)) {
             result = true;
         }
-        console.log("Error == " + result);
         return result;
     };
 
