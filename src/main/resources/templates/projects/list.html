@@ -2,6 +2,8 @@
 
 <div layout:fragment="content">
 
+    <a class="btn btn-primary" href="/projects/new" role="button">Add new Project</a>
+
     <table class="table" id="projects_list">
         <caption>All Projects</caption>
         <thead>
@@ -9,6 +11,7 @@
             <th>#</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -17,12 +20,14 @@
             <td class="first_name" data-th-text="${project.name}">...</td>
             <td class="last_name" data-th-text="${project.description}">...</td>
             <td>
+
                 <a th:href="@{'/projects/{id}'(id=${project.id})}">
                     <span class="fa-stack">
-                        <i class="glyphicon glyphicon-hand-right"></i>
+                        <i class="glyphicon glyphicon-trash"></i>
                     </span>
 
                 </a>
+
             </td>
         </tr>
         </tbody>
