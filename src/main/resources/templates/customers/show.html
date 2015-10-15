@@ -1,0 +1,27 @@
+<html layout:decorator="layout">
+
+  <div layout:fragment="content">
+
+      <table class="table" id="customers_list">
+          <caption>Customers list</caption>
+          <thead>
+          <tr>
+              <th>#</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email Address</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr data-th-each="customer : ${customers}">
+              <th scope="row" data-th-text="${customer.id}"></th>
+              <td class="first_name" data-th-text="${customer.firstName}">...</td>
+              <td class="last_name" data-th-text="${customer.lastName}">...</td>
+              <td class="email_address" data-th-text="${customer.emailAddress}">...</td>
+          </tr>
+          </tbody>
+      </table>
+
+  </div>
+
+</html>

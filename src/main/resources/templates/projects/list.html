@@ -1,0 +1,33 @@
+<html layout:decorator="layout">
+
+<div layout:fragment="content">
+
+    <table class="table" id="projects_list">
+        <caption>All Projects</caption>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-th-each="project : ${projects}">
+            <th scope="row" data-th-text="${project.id}"></th>
+            <td class="first_name" data-th-text="${project.name}">...</td>
+            <td class="last_name" data-th-text="${project.description}">...</td>
+            <td>
+                <a th:href="@{'/projects/{id}'(id=${project.id})}">
+                    <span class="fa-stack">
+                        <i class="glyphicon glyphicon-hand-right"></i>
+                    </span>
+
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</html>
