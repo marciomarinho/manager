@@ -21,7 +21,7 @@
             <td class="last_name" data-th-text="${project.description}">...</td>
             <td>
 
-                <a th:href="@{'/projects/{id}'(id=${project.id})}">
+                <a th:href="@{'/projects/{id}/delete'(id=${project.id})}">
                     <span class="fa-stack">
                         <i class="glyphicon glyphicon-trash"></i>
                     </span>
