@@ -72,12 +72,11 @@ public class MyStepdefs {
     }
 
     private String getHostAndPort() {
-        return "localhost:8080";
-//        try {
-//            return InetAddress.getLocalHost().getHostName() + ":8080";
-//        } catch (UnknownHostException e) {
-//            return "localhost:8080";
-//        }
+        try {
+            return InetAddress.getLocalHost().getHostName() + ":8080";
+        } catch (UnknownHostException e) {
+            return "localhost:8080";
+        }
     }
 
 }
