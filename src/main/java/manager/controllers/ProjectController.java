@@ -43,8 +43,6 @@ public class ProjectController {
                          Model model) {
 
         Project project = repository.findOne(id);
-        System.out.println("Project :");
-        System.out.println(project);
         model.addAttribute("project", project);
         return "projects/edit";
     }
