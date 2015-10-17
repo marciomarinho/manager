@@ -1,0 +1,22 @@
+<html layout:decorator="layout">
+
+<div layout:fragment="content">
+
+    <form method="POST" name="new_project" id="new_project" action="/projects/update" role="form" ng-controller="ProjectController">
+        <input type="hidden" class="form-control" id="id" name="project[id]" th:value="${project.id}"/>
+        <div class="form-group" ng-class="validationFeedback(new_project['project[name]'])">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="project[name]" ng-model="project.name" th:attr="ng-init='project.name=\'' + ${project.name} + '\''" required="true"/>
+            <span ng-show="showError(new_project['project[name]'])" class="help-block error">can't be blank</span>
+        </div>
+        <div class="form-group" ng-class="validationFeedback(new_project['project[description]'])">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="project[description]" ng-model="project.description" th:attr="ng-init='project.description=\'' + ${project.description} + '\''" rows="5" required="true"/>
+            <span ng-show="showError(new_project['project[description]'])" class="help-block error">can't be blank</span>
+        </div>
+        <button type="submit" id="submit" class="btn btn-default" ng-disabled="new_project.$invalid">Submit</button>
+    </form>
+
+</div>
+
+</html>

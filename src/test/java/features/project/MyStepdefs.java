@@ -51,6 +51,11 @@ public class MyStepdefs {
         driver.findElement(new By.ById("name"));
     }
 
+    @Given("^I visit the projects list$")
+    public void i_visit_the_projects_list() throws Throwable {
+        driver.get(getHostAndPort() + "/projects");
+    }
+
     @When("^I enter the fields :$")
     public void i_enter_the_fields(DataTable dataTable) throws Throwable {
         Map<String, String> data = dataTable.asMap(String.class, String.class);
@@ -69,6 +74,33 @@ public class MyStepdefs {
     @Then("^I should see \"([^\"]*)\" in the projects list$")
     public void i_should_see_in_the_projects_list(String text) throws Throwable {
         driver.findElement(new By.ByXPath(".//*[@id='projects_list']//td[contains(., '" + text + "')]"));
+    }
+
+
+    @When("^I click delete \"([^\"]*)\"$")
+    public void i_click_delete(String arg1) throws Throwable {
+        WebElement element = driver.findElement(new By.ByXPath("//a[contains(@class, 'delete')][@Name='" + arg1 + "']"));
+        element.click();
+    }
+
+    @When("^I click edit \"([^\"]*)\"$")
+    public void i_click_edit(String arg1) throws Throwable {
+        WebElement element = driver.findElement(new By.ByXPath("//a[contains(@class, 'edit')][@Name='" + arg1 + "']"));
+        element.click();
+    }
+
+    @Then("^I should not see \"([^\"]*)\" in the projects list$")
+    public void i_should_not_see_in_the_projects_list(String arg1) throws Throwable {
+
+        try {
+            WebElement element = driver.findElement(new By.ById(arg1));
+            if (element.isDisplayed()) {
+                throw new Throwable("The element was found, but SHOULD NOT !");
+            }
+        } catch(org.openqa.selenium.NoSuchElementException ex) {
+            //Ok, element not found
+        }
+
     }
 
     private String getHostAndPort() {

@@ -38,6 +38,31 @@ public class ProjectController {
         return "projects/list";
     }
 
+    @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
+    public String edit(@PathVariable long id,
+                         Model model) {
+
+        Project project = repository.findOne(id);
+        System.out.println("Project :");
+        System.out.println(project);
+        model.addAttribute("project", project);
+        return "projects/edit";
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String update(@RequestParam("project[id]") long id,
+                         @RequestParam("project[name]") String name,
+                         @RequestParam("project[description]") String description,
+                         Model model) {
+
+        Project project = repository.findOne(id);
+        project.setName(name);
+        project.setDescription(description);
+        repository.save(project);
+        model.addAttribute("projects", repository.findAll());
+        return "projects/list";
+    }
+
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public ModelAndView delete(@PathVariable long id) {
         repository.delete(id);
