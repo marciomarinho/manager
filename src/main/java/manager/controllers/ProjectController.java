@@ -41,7 +41,6 @@ public class ProjectController {
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
     public String edit(@PathVariable long id,
                          Model model) {
-
         Project project = repository.findOne(id);
         model.addAttribute("project", project);
         return "projects/edit";
@@ -52,7 +51,6 @@ public class ProjectController {
                          @RequestParam("project[name]") String name,
                          @RequestParam("project[description]") String description,
                          Model model) {
-
         Project project = repository.findOne(id);
         project.setName(name);
         project.setDescription(description);
