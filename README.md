@@ -9,11 +9,18 @@ Manager is an Agile Project Management tool
 2. Sprints for Projects - Spiked.
 3. Epics - TBD.
 4. Stories - TBD.
-4. Users - TBD.
+5. Users - TBD.
 
-* How to use it ?
+**How to use it ?**
 
+- Install JDK 8 : http://www.oracle.com/technetwork/java/index.html
+- Install Maven : https://maven.apache.org/install.html
 - Clone the repository
 - mvn package
 - java -jar target/manager-1.0.jar
 - Open a browser and go to http://localhost:8080/projects
+
+**What is coming next ?**
+
+- Amazon AWS Demo
+- Demo Video
