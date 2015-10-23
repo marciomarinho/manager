@@ -2,6 +2,7 @@ package manager.controllers;
 
 import manager.domain.Project;
 import manager.domain.ProjectRepository;
+import manager.domain.Sprint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,5 +65,14 @@ public class ProjectController {
         repository.delete(id);
         return new ModelAndView("redirect:/projects");
     }
+
+    @RequestMapping(value = "/{id}/sprints", method = RequestMethod.GET)
+    public String sprints(@PathVariable long id, Model model) {
+        Project project = repository.findOne(id);
+        model.addAttribute("project", project);
+        return "projects/sprint_list";
+    }
+
+
 
 }

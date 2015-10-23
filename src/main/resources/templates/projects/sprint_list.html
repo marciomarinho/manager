@@ -1,0 +1,46 @@
+<html layout:decorator="layout">
+
+<div layout:fragment="content">
+
+    <table class="table" id="sprints_list">
+        <caption data-th-text="${project.name}">${project.name}</caption>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-th-each="sprint : ${project.sprints}">
+            <th scope="row" data-th-text="${sprint.id}"></th>
+            <td class="name">
+                <a th:href="@{'/sprints/{id}'(id=${sprint.id})}" data-th-text="${sprint.name}" th:attr="name=${sprint.name}"></a>
+            </td>
+            <td class="start_date" data-th-text="${sprint.startDate}"></td>
+            <td class="start_date" data-th-text="${sprint.endDate}"></td>
+            <td>
+                <a th:href="@{'/sprints/{id}/delete'(id=${sprint.id})}" class="delete" th:attr="name=${sprint.name}">
+                    <span class="fa-stack">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </span>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/sprints/{id}/edit'(id=${sprint.id})}" class="edit" th:attr="name=${sprint.name}">
+                    <span class="fa-stack">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </span>
+
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</html>

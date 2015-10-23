@@ -1,13 +1,8 @@
 package manager.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
-/**
- * Created by marciomarinho on 6/09/15.
- */
 @Entity
 public class Project {
 
@@ -16,6 +11,9 @@ public class Project {
     private long id;
     private String name;
     private String description;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade={CascadeType.ALL})
+    private List<Sprint> sprints;
 
     public Project() {}
 
@@ -42,6 +40,14 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Sprint> getSprints() {
+        return sprints;
+    }
+
+    public void setSprints(List<Sprint> sprints) {
+        this.sprints = sprints;
     }
 
     @Override

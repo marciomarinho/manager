@@ -18,14 +18,15 @@
         <tbody>
         <tr data-th-each="project : ${projects}">
             <th scope="row" data-th-text="${project.id}"></th>
-            <td class="name" data-th-text="${project.name}">...</td>
+            <td class="name">
+                <a th:href="@{'/projects/{id}/sprints'(id=${project.id})}" data-th-text="${project.name}" th:attr="name=${project.name}"></a>
+            </td>
             <td class="description" data-th-text="${project.description}">...</td>
             <td>
                 <a th:href="@{'/projects/{id}/delete'(id=${project.id})}" class="delete" th:attr="name=${project.name}">
                     <span class="fa-stack">
                         <i class="glyphicon glyphicon-trash"></i>
                     </span>
-
                 </a>
             </td>
             <td>
