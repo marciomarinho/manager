@@ -19,10 +19,11 @@ public class Sprint {
     public Sprint() {
     }
 
-    public Sprint(String name, Date startDate, Date endDate) {
+    public Sprint(String name, Date startDate, Date endDate, Project project) {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.project = project;
     }
 
     public long getId() {
@@ -61,6 +62,11 @@ public class Sprint {
         this.project = project;
     }
 
+    public long removeFromProject() {
+        this.project.removeSprint(this);
+        return this.project.getId();
+    }
+
     @Override
     public String toString() {
         return "Sprint{" +
@@ -70,4 +76,7 @@ public class Sprint {
                 ", endDate=" + endDate +
                 '}';
     }
+
+
+
 }

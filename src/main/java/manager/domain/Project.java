@@ -1,6 +1,7 @@
 package manager.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,11 +16,13 @@ public class Project {
     @OneToMany(fetch = FetchType.EAGER, cascade={CascadeType.ALL})
     private List<Sprint> sprints;
 
-    public Project() {}
+    public Project() {
+    }
 
     public Project(String name, String description) {
         this.name = name;
         this.description = description;
+        sprints = new ArrayList<>();
     }
 
     public long getId() {
@@ -42,12 +45,9 @@ public class Project {
         this.description = description;
     }
 
+    //TODO: Make it safe and clone sprints before returning them.
     public List<Sprint> getSprints() {
         return sprints;
-    }
-
-    public void setSprints(List<Sprint> sprints) {
-        this.sprints = sprints;
     }
 
     @Override
@@ -55,6 +55,18 @@ public class Project {
         return String.format(
                 "Project[id=%d, name='%s', description='%s']",
                 id, name, description);
+    }
+
+    public void addSprint(Sprint sprint) {
+        this.sprints.add(sprint);
+    }
+
+    public int countSprints() {
+        return this.sprints.size();
+    }
+
+    public void removeSprint(Sprint sprint) {
+        this.sprints.remove(sprint);
     }
 
 }

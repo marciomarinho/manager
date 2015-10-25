@@ -91,7 +91,21 @@ public class MyStepdefs {
 
     @Then("^I should not see \"([^\"]*)\" in the projects list$")
     public void i_should_not_see_in_the_projects_list(String arg1) throws Throwable {
+        shouldNotSeeElement(arg1);
+    }
 
+    @When("^I click view \"([^\"]*)\"$")
+    public void i_click_view(String arg1) throws Throwable {
+        WebElement element = driver.findElement(new By.ByXPath("//a[contains(@class, 'view')][@Name='" + arg1 + "']"));
+        element.click();
+    }
+
+    @Then("^I should not see \"([^\"]*)\" in the sprints list$")
+    public void i_should_not_see_in_the_sprints_list(String arg1) throws Throwable {
+        shouldNotSeeElement(arg1);
+    }
+
+    private void shouldNotSeeElement(String arg1) throws Throwable {
         try {
             WebElement element = driver.findElement(new By.ById(arg1));
             if (element.isDisplayed()) {
@@ -100,8 +114,13 @@ public class MyStepdefs {
         } catch(org.openqa.selenium.NoSuchElementException ex) {
             //Ok, element not found
         }
-
     }
+
+    @When("^I wait for (\\d+) seconds$")
+    public void i_wait_for_seconds(int arg1) throws Throwable {
+        Thread.sleep(10000);
+    }
+
 
     private String getHostAndPort() {
         try {

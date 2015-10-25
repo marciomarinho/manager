@@ -19,7 +19,7 @@
         <tr data-th-each="project : ${projects}">
             <th scope="row" data-th-text="${project.id}"></th>
             <td class="name">
-                <a th:href="@{'/projects/{id}/sprints'(id=${project.id})}" data-th-text="${project.name}" th:attr="name=${project.name}"></a>
+                <a th:href="@{'/projects/{id}/sprints'(id=${project.id})}" class="view" data-th-text="${project.name}" th:attr="name=${project.name}"></a>
             </td>
             <td class="description" data-th-text="${project.description}">...</td>
             <td>
