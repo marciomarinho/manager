@@ -70,7 +70,7 @@ public class ProjectController {
     public String sprints(@PathVariable long id, Model model) {
         Project project = repository.findOne(id);
         model.addAttribute("project", project);
-        return "projects/sprint_list";
+        return "projects/sprints/list";
     }
 
 
