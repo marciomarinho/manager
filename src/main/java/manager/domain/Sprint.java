@@ -1,7 +1,11 @@
 package manager.domain;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Sprint {
@@ -19,7 +23,8 @@ public class Sprint {
     public Sprint() {
     }
 
-    public Sprint(String name, Date startDate, Date endDate, Project project) {
+    public Sprint(long id, String name, Date startDate, Date endDate, Project project) {
+        this.id = id;
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -65,6 +70,12 @@ public class Sprint {
     public long removeFromProject() {
         this.project.removeSprint(this);
         return this.project.getId();
+    }
+
+    @Override
+    public Sprint clone() {
+        Project cloneProject = new Project(this.project.getName(), this.project.getDescription());
+        return new Sprint(this.id, new String(this.name), (Date)this.startDate.clone(), (Date)this.endDate.clone(), cloneProject);
     }
 
     @Override

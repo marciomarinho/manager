@@ -15,7 +15,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr data-th-each="sprint : ${project.sprints}">
+        <tr data-th-each="sprint : ${project.allSprints()}">
             <th scope="row" data-th-text="${sprint.id}"></th>
             <td class="name">
                 <a th:href="@{'/sprints/{id}'(id=${sprint.id})}" data-th-text="${sprint.name}" th:attr="name=${sprint.name}"></a>

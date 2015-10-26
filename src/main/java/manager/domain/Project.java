@@ -2,7 +2,9 @@ package manager.domain;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Project {
@@ -45,16 +47,8 @@ public class Project {
         this.description = description;
     }
 
-    //TODO: Make it safe and clone sprints before returning them.
-    public List<Sprint> getSprints() {
-        return sprints;
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "Project[id=%d, name='%s', description='%s']",
-                id, name, description);
+    public List<Sprint> allSprints() {
+        return Collections.unmodifiableList(sprints.stream().map(item -> item.clone()).collect(Collectors.toList()));
     }
 
     public void addSprint(Sprint sprint) {
@@ -67,6 +61,13 @@ public class Project {
 
     public void removeSprint(Sprint sprint) {
         this.sprints.remove(sprint);
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Project[id=%d, name='%s', description='%s']",
+                id, name, description);
     }
 
 }
