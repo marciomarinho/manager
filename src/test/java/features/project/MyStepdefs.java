@@ -23,9 +23,10 @@ import java.net.UnknownHostException;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by marciomarinho on 29/09/15.
- */
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+
+//TODO: Create reusable steps
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
 @WebAppConfiguration
@@ -99,6 +100,19 @@ public class MyStepdefs {
         WebElement element = driver.findElement(new By.ByXPath("//a[contains(@class, 'view')][@Name='" + arg1 + "']"));
         element.click();
     }
+
+    @When("^I click \"([^\"]*)\"$")
+    public void i_click(String arg1) throws Throwable {
+        WebElement element = driver.findElement(new By.ByXPath("//a[text() = '" + arg1 + "']"));
+        element.click();
+    }
+
+    @Then("^I should see \"([^\"]*)\" in the sprints list$")
+    public void i_should_see_in_the_sprints_list(String arg1) throws Throwable {
+        WebElement element = driver.findElement(new By.ByXPath("//a[text()='" + arg1 + "']"));
+        assertThat(element.isDisplayed(), is(true));
+    }
+
 
     @Then("^I should not see \"([^\"]*)\" in the sprints list$")
     public void i_should_not_see_in_the_sprints_list(String arg1) throws Throwable {

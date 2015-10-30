@@ -2,6 +2,8 @@
 
 <div layout:fragment="content">
 
+    <a class="btn btn-primary add" th:href="@{'/projects/{id}/sprints/new'(id=${project.id})}" role="button">Add new Sprint</a>
+
     <table class="table" id="sprints_list">
         <caption data-th-text="${project.name}">${project.name}</caption>
         <thead>

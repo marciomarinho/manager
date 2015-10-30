@@ -1,0 +1,27 @@
+<html layout:decorator="layout">
+
+  <div layout:fragment="content">
+
+    <form method="post" name="new_project" id="new_sprint" action="/projects/sprints/create" role="form" ng-controller="SprintController">
+        <div class="form-group" ng-class="validationFeedback(new_sprint['sprint[name]'])">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="sprint[name]" ng-model="sprint.name" required="true"/>
+            <span ng-show="showError(new_sprint['sprint[name]'])" class="help-block error">can't be blank</span>
+        </div>
+        <div class="form-group" ng-class="validationFeedback(new_sprint['sprint[startDate]'])">
+            <label for="startDate">Start Date</label>
+            <input type="text" class="form-control" id="startDate" name="sprint[startDate]" ng-model="sprint.startDate" rows="5" required="true"/>
+            <span ng-show="showError(new_sprint['sprint[startDate]'])" class="help-block error">can't be blank</span>
+        </div>
+        <div class="form-group" ng-class="validationFeedback(new_sprint['sprint[endDate]'])">
+            <label for="endDate">End Date</label>
+            <input type="text" class="form-control" id="endDate" name="sprint[endDate]" ng-model="sprint.endDate" rows="5" required="true"/>
+            <span ng-show="showError(new_sprint['sprint[endDate]'])" class="help-block error">can't be blank</span>
+        </div>
+        <input type="hidden" id="project_id" name="project[id]" th:value="${projectId}"/>
+      <button type="submit" id="submit" class="btn btn-default" ng-disabled="new_sprint.$invalid">Submit</button>
+    </form>
+
+  </div>
+
+</html>
