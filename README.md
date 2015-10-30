@@ -6,7 +6,7 @@ Manager is an Agile Project Management tool
 **Features**
 
 1. Project definition - Ok.
-2. Sprints for Projects - Spiked.
+2. Sprints for Projects - Ok.
 3. Epics - TBD.
 4. Stories - TBD.
 5. Users - TBD.
