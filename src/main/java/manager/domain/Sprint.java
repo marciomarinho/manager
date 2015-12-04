@@ -1,11 +1,7 @@
 package manager.domain;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 @Entity
 public class Sprint {
@@ -14,8 +10,8 @@ public class Sprint {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
     private String name;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     @ManyToOne(fetch=FetchType.EAGER)
     private Project project;
@@ -23,7 +19,8 @@ public class Sprint {
     public Sprint() {
     }
 
-    public Sprint(long id, String name, Date startDate, Date endDate, Project project) {
+
+    public Sprint(long id, String name, LocalDate startDate, LocalDate endDate, Project project) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
@@ -43,19 +40,19 @@ public class Sprint {
         this.name = name;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -75,7 +72,9 @@ public class Sprint {
     @Override
     public Sprint clone() {
         Project cloneProject = new Project(this.project.getName(), this.project.getDescription());
-        return new Sprint(this.id, new String(this.name), (Date)this.startDate.clone(), (Date)this.endDate.clone(), cloneProject);
+        return new Sprint(this.id, new String(this.name),
+                LocalDate.of(this.startDate.getYear(),this.startDate.getMonth(), this.startDate.getDayOfMonth()),
+                LocalDate.of(this.endDate.getYear(),this.endDate.getMonth(), this.endDate.getDayOfMonth()), cloneProject);
     }
 
     @Override

@@ -9,13 +9,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.*;
+import java.time.LocalDate;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
     @Autowired
     ProjectRepository repository;
+
 
     @Autowired
     SprintRepository sprintRepository;
@@ -29,9 +30,9 @@ public class Application implements CommandLineRunner {
 
         //TODO: Test stuff. Replace by http://flywaydb.org/ later.
         Project project1 = new Project("Project1", "Project Number #1");
-        Sprint sp1 =  new Sprint(0,"Sprint1", new Date(2015, 11, 01), new Date(2015, 11, 30), project1);
-        Sprint sp2 =  new Sprint(0,"Sprint2", new Date(2015, 12, 01), new Date(2015, 12, 31), project1);
-        Sprint sp3 =  new Sprint(0,"Sprint3", new Date(2016, 01, 01), new Date(2016, 04, 12), project1);
+        Sprint sp1 =  new Sprint(0,"Sprint1", LocalDate.of(2015, 11, 01), LocalDate.of(2015, 11, 30), project1);
+        Sprint sp2 =  new Sprint(0,"Sprint2", LocalDate.of(2015, 12, 01), LocalDate.of(2015, 12, 31), project1);
+        Sprint sp3 =  new Sprint(0,"Sprint3", LocalDate.of(2016, 01, 01), LocalDate.of(2016, 04, 12), project1);
         project1.addSprint(sp1);
         project1.addSprint(sp2);
         project1.addSprint(sp3);

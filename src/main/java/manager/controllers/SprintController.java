@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Controller
 public class SprintController {
@@ -32,8 +32,8 @@ public class SprintController {
 
     @RequestMapping(value = "/projects/sprints/create", method = RequestMethod.POST)
     public ModelAndView create(@RequestParam("sprint[name]") String name,
-                         @RequestParam("sprint[startDate]") Date startDate,
-                         @RequestParam("sprint[endDate]") Date endDate,
+                         @RequestParam("sprint[startDate]") LocalDate startDate,
+                         @RequestParam("sprint[endDate]") LocalDate endDate,
                          @RequestParam("project[id]") long projectId) {
 
         Project project = projectRepository.findOne(projectId);
